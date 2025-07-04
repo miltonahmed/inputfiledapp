@@ -1,35 +1,74 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import styled from "styled-components";
+
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  
+   const [text, setText] = useState("");
+
+  const handleChange = (e) => {
+    setText(e.target.value);
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <Container>
+      <Card>
+        <h2>Input Field App</h2>
+        <InputField 
+          type="text" 
+          value={text} 
+          onChange={handleChange} 
+          placeholder="Type something..." 
+        />
+        <DisplayText>You typed: {text}</DisplayText>
+      </Card>
+    </Container>
+      
     </>
   )
 }
 
 export default App
+
+
+const Container = styled.div`
+  min-height: 100vh;
+  background: #f3f4f6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Card = styled.div`
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  text-align: center;
+`;
+
+const InputField = styled.input`
+  padding: 12px;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 300px;
+  border: 2px solid #cbd5e0;
+  border-radius: 8px;
+  outline: none;
+  margin-bottom: 20px;
+
+  &:focus {
+    border-color: #4299e1;
+  }
+`;
+
+const DisplayText = styled.p`
+  font-size: 1.2rem;
+  color: #333;
+`;
+
+
+
+
